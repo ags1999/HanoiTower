@@ -1,6 +1,5 @@
 Dependências:
 
-musicalbeeps
-simpleaudio
+musicalbeeps, simpleaudio - pip3
 
-libasound2-dev
+libasound2-dev - apt-get
