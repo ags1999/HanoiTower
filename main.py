@@ -28,8 +28,8 @@ def ImprimePinos():
 def HanoiRecursivo(n, inicial, final, aux):
     if n > 0:
         HanoiRecursivo(n-1, inicial, aux, final)
-        disco = inicial.pop()
-        final.append(disco)
+        disco = inicial.pop(0)
+        final.insert(0, disco)
         player.play_note(notas[disco], 0.2)
         ImprimePinos()
         HanoiRecursivo(n-1, aux, final, inicial)
@@ -53,6 +53,7 @@ def movimento(Pino1, Pino2):
             mv_aux(Pino2, Pino1)
         else:
             mv_aux(Pino1, Pino2)
+    ImprimePinos()
     return 1
 
 def HanoiIterativo(n, inicial, final, aux):
