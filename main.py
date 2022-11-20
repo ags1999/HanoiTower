@@ -1,7 +1,7 @@
 import musicalbeeps
 
 
-pinoA = [0, 1, 2, 3, 4, 5]
+pinoA = [0, 1, 2, 3]
 pinoB = []
 pinoC = []
 
@@ -17,50 +17,33 @@ notas = {
     6: "B",
 }
 
+def ImprimePinos():
+    print("Pino A = " + str(pinoA))
+    print("Pino B = " + str(pinoB))
+    print("Pino C = " + str(pinoC))
+    print("/////////////////////////////////////////////////")
 
 
-def Hanoi1(n, inicial, final, aux):
-    if n > 0: 
-        Hanoi1(n-1, inicial, final, aux)
-        if inicial:
-            disco = inicial.pop()
-            player.play_note(notas[disco], 0.2)
-            final.append(disco)
-        Hanoi1(n-1, aux, inicial, final)
 
+def HanoiRecursivo(n, inicial, final, aux):
+    
+    if n > 0:
+        HanoiRecursivo(n-1, inicial, aux, final)
+        disco = inicial.pop()
+        final.append(disco)
+        player.play_note(notas[disco], 0.2)
+        ImprimePinos()
+        HanoiRecursivo(n-1, aux, final, inicial)
     return
 
 
-#Não está pronta
-def Hanoi2():
-    while(len(pinoA) != 0):
-        if(len(pinoA)%2 != 0):
 
-            disco = pinoA.pop(0)
-            player.play_note(notas[disco], 0.2)
-            pinoB.insert(0, disco)
 
-            disco = pinoA.pop(0)
-            player.play_note(notas[disco], 0.2)
-            pinoC.insert(0, disco)
 
-            disco = pinoB.pop(0)
-            player.play_note(notas[disco], 0.2)
-            pinoC.insert(0, disco)
-        else:
-            disco = pinoA.pop(0)
-            player.play_note(notas[disco], 0.2)
-            pinoC.insert(0, disco)
+HanoiRecursivo(len(pinoA), pinoA, pinoC, pinoB)
+print(pinoC)
 
-            disco = pinoA.pop(0)
-            player.play_note(notas[disco], 0.2)
-            pinoB.insert(0, disco)
 
-            disco = pinoB.pop(0)
-            player.play_note(notas[disco], 0.2)
-            pinoC.insert(0, disco)
 
-    return
-
-#Hanoi1(len(pinoA), pinoA, pinoB, pinoC)
-Hanoi2()
+#nm = Hanoi2(pinoA, pinoB, pinoC)
+#print("Numero de movimentos = " + str(nm))
